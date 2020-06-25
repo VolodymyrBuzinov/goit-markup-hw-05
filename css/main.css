@@ -9,10 +9,10 @@
   --text-color: #212121;
   --main-color: #2196f3;
   --little-text-color: #757575;
+  --animation-duration: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* HEADER */
 .header-navigation {
-  border-bottom: 1px solid #ececec;
   display: flex;
   width: 1200px;
   padding-right: 15px;
@@ -20,6 +20,9 @@
   margin-left: auto;
   margin-right: auto;
   align-items: center;
+}
+.header-border {
+  border-bottom: 1px solid #ececec;
 }
 .navigation-list {
   list-style: none;
@@ -44,7 +47,8 @@
 .navigation-web-studio span {
   color: var(--main-color);
 }
-.navigation-pages a {
+.navigation-pages .nav-link {
+  position: relative;
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -54,12 +58,27 @@
   letter-spacing: 0.02em;
   color: var(--text-color);
   text-decoration: none;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
-.navigation-pages a:hover,
-.navigation-pages a:focus {
+.navigation-pages .nav-link:hover,
+.navigation-pages .nav-link:focus {
   color: var(--main-color);
-  text-decoration: underline;
+}
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--main-color);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scalex(0);
+  transition: var(--animation-duration);
+}
+.nav-link:hover::before {
+  opacity: 1;
+  transform: scalex(1);
 }
 .navigation-contacts {
   margin-top: 0;
@@ -85,7 +104,7 @@
   letter-spacing: 0.02em;
   color: var(--little-text-color);
   text-decoration: none;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
   fill: #757575;
 }
 .contact-us a:hover,
@@ -298,6 +317,9 @@
   background-color: rgba(47, 48, 58, 0.8);
 }
 .main-desktop p {
+  left: 0;
+  right: 0;
+  bottom: 27px;
   min-width: 200px;
   display: block;
   padding-right: 15px;
@@ -312,9 +334,6 @@
   color: var(--text-link-color);
   text-align: center;
   position: absolute;
-  bottom: 27px;
-  left: 0;
-  right: 0;
 }
 
 .team {
@@ -389,9 +408,11 @@
   height: 44px;
   background-color: var(--text-link-color);
   border-radius: 50px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   fill: #afb1b8;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .instagram a:hover,
 .instagram a:focus {
@@ -400,20 +421,20 @@
   background-color: var(--main-color);
 }
 .instagram-icon {
-  transform: translatey(60%);
   width: 20px;
   height: 20px;
-  display: inline-block;
   margin-right: 0;
 }
 .twitter a {
   width: 44px;
   height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--text-link-color);
   border-radius: 50px;
-  display: block;
   fill: #afb1b8;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .twitter a:hover,
 .twitter a:focus {
@@ -422,20 +443,20 @@
   background-color: var(--main-color);
 }
 .twitter-icon {
-  transform: translatey(60%);
   width: 20px;
   height: 20px;
-  display: inline-block;
   margin-right: 0;
 }
 .facebook a {
   width: 44px;
   height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--text-link-color);
   border-radius: 50px;
-  display: block;
   fill: #afb1b8;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .facebook a:hover,
 .facebook a:focus {
@@ -444,20 +465,20 @@
   background-color: var(--main-color);
 }
 .facebook-icon {
-  transform: translatey(60%);
   width: 20px;
   height: 20px;
-  display: inline-block;
   margin-right: 0;
 }
 .IN a {
   width: 44px;
   height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--text-link-color);
   border-radius: 50px;
-  display: block;
   fill: #afb1b8;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .IN a:hover,
 .IN a:focus {
@@ -466,10 +487,8 @@
   background-color: var(--main-color);
 }
 .linkedin-icon {
-  transform: translatey(60%);
   width: 20px;
   height: 20px;
-  display: inline-block;
   margin-right: 0;
 }
 .footer {
@@ -490,14 +509,17 @@
 }
 .footer-company {
   min-width: 170px;
-  border: 1px solid #afb1b8;
-  border-radius: 4px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 30px;
   padding-top: 24px;
   padding-bottom: 24px;
+  border: 1px solid #afb1b8;
+  border-radius: 4px;
+  text-align: center;
   fill: #afb1b8;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
   cursor: pointer;
 }
 .footer-company:hover,
@@ -507,10 +529,6 @@
 }
 .footer-company:last-child {
   margin-right: 0;
-}
-.compamy-link {
-  display: block;
-  margin: auto;
 }
 .yaco-icon {
   width: 44px;
@@ -635,7 +653,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   background-size: 20px 20px;
   display: block;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .footer-instagram a:hover,
 .footer-instagram a:focus {
@@ -652,7 +670,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   background-size: 20px 20px;
   display: block;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .footer-twitter a:hover,
 .footer-twitter a:focus {
@@ -669,7 +687,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   background-size: 20px 20px;
   display: block;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .footer-facebook a:hover,
 .footer-facebook a:focus {
@@ -686,7 +704,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   background-size: 20px 20px;
   display: block;
-  transition: 0.3s ease-in;
+  transition: var(--animation-duration);
 }
 .footer-IN a:hover,
 .footer-IN a:focus {
